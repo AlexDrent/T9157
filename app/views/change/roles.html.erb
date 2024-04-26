@@ -1,0 +1,23 @@
+<h1>Change#roles</h1>
+<p>Find me in app/views/change/roles.html.erb</p>
+<table class="table table-hover">
+  <caption>Current users and role</caption>
+  <thead>
+    <tr>
+      <th>email</th>
+      <th>role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.each do |user|%>
+       <tr>
+         <td>
+           <%= user.email %>
+         </td>
+         <td>
+           <%= user.role %>
+         </td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
