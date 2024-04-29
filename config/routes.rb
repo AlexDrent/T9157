@@ -64,20 +64,24 @@ Rails.application.routes.draw do
   root "home#index"
 
   # Custom sign out route
-  devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
-  end
+
 
   # Devise routes with custom controllers
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
-  }
 
-  # Manually add the session routes while skipping others
+  }
   devise_scope :user do
-    resource :session, only: [:new, :create, :destroy], path: 'users', controller: 'devise/sessions'
+    get '/users/sign_out' => 'devise/sessions#destroy'
+    resource :registration, only: [:new, :create, :destroy], path: 'users', controller: 'devise/registrations', as: :user_registration
+
+    resource :session, only: [:new, :create, :destroy], path: 'users', controller: 'devise/sessions', as: :user_session
+
   end
+  # Manually add the session routes while skipping others
+#   devise_scope :user do
+#   end
 end
 
 

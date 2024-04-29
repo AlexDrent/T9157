@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super
-    resource.update(role_id: Role.find_by(name: 'unregistered').id)
+    #resource.update(role_id: Role.find_by(name: 'unregistered').id)
 
 
 
@@ -16,7 +16,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
+  #   resource.update(role_id: Role.find_by(name: 'unregistered').id)
+  #     #(role_id: Role.find_by(name: 'unregistered').id)
   #   super
+  #
+  #
   # end
   #
   # GET /resource/edit
