@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @committee_meeting %>
+
+<div>
+  <%= link_to "Edit this committee meeting", edit_committee_meeting_path(@committee_meeting) %> |
+  <%= link_to "Back to committee meetings", committee_meetings_path %>
+
+  <%= button_to "Destroy this committee meeting", @committee_meeting, method: :delete %>
+
+
+  <%= link_to "Add Agenda Item", new_committee_meeting_committee_agenda_item_path(@committee_meeting) %>
+
+</div>
+  <h2>Agenda Items</h2>
+  <% if @committee_agenda_items.any? %>
+    <ul>
+      <% @committee_agenda_items.each do |committee_agenda_item| %>
+        <li>
+          <strong>Subject:</strong> <%= committee_agenda_item.subject %><br>
+          <strong>Details:</strong> <%= committee_agenda_item.details %><br>
+          <%= form_with(model: committee_agenda_item, url: committee_meeting_committee_agenda_item_path(@committee_meeting, committee_agenda_item), method: :patch, local: true) do |form| %>
+            <div>
+              <%= form.label :done %>
+              <%= form.check_box :done, onchange: "this.form.submit()" %>
+            </div>
+            <div>
+              <%= form.label :resolutions %>
+              <%= form.text_area :resolutions %>
+            </div>
+            <%= form.submit "Update", class: "btn btn-primary" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No agenda items found for this meeting.</p>
+  <% end %>
+</div>

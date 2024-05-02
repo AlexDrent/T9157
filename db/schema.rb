@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_173727) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_202308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agenda_items", force: :cascade do |t|
+    t.text "subject"
+    t.text "details"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "plc_meeting_id", null: false
+    t.text "resolutions"
+    t.index ["plc_meeting_id"], name: "index_agenda_items_on_plc_meeting_id"
+  end
+
+  create_table "committee_agenda_items", force: :cascade do |t|
+    t.text "subject"
+    t.text "details"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "committee_meeting_id", null: false
+    t.text "resolutions"
+    t.index ["committee_meeting_id"], name: "index_committee_agenda_items_on_committee_meeting_id"
+  end
+
+  create_table "committee_meetings", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plc_meetings", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -34,5 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_173727) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "agenda_items", "plc_meetings"
+  add_foreign_key "committee_agenda_items", "committee_meetings"
   add_foreign_key "users", "roles"
 end

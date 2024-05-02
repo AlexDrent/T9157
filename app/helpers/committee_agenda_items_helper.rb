@@ -1,0 +1,2 @@
+module CommitteeAgendaItemsHelper
+end

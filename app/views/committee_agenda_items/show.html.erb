@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @committee_agenda_item %>
+
+<div>
+  <%= link_to "Edit this committee agenda item", edit_committee_agenda_item_path(@committee_agenda_item) %> |
+  <%= link_to "Back to committee agenda items", committee_agenda_items_path %>
+
+  <%= button_to "Destroy this committee agenda item", @committee_agenda_item, method: :delete %>
+</div>
+
+

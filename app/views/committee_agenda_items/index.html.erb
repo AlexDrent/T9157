@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Committee agenda items</h1>
+
+<div id="committee_agenda_items">
+  <% @committee_agenda_items.each do |committee_agenda_item| %>
+    <%= render committee_agenda_item %>
+    <p>
+      <%= link_to "Show this committee agenda item", committee_agenda_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New committee agenda item", new_committee_agenda_item_path %>

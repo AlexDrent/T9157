@@ -1,0 +1,23 @@
+<%= form_with(model: plc_meeting) do |form| %>
+  <% if plc_meeting.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(plc_meeting.errors.count, "error") %> prohibited this plc_meeting from being saved:</h2>
+
+      <ul>
+        <% plc_meeting.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

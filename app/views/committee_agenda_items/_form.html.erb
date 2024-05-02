@@ -1,0 +1,38 @@
+<%= form_with(model: [@committee_meeting, @committee_agenda_item]) do |form| %>
+  <% if committee_agenda_item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(committee_agenda_item.errors.count, "error") %> prohibited this committee_agenda_item from being saved:</h2>
+
+      <ul>
+        <% committee_agenda_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :subject, style: "display: block" %>
+    <%= form.text_area :subject %>
+  </div>
+  <%= form.hidden_field :committee_meeting_id %>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.text_area :details %>
+  </div>
+
+  <div>
+    <%= form.label :done, style: "display: block" %>
+    <%= form.check_box :done %>
+  </div>
+
+  <div>
+    <%= form.label :resolutions, style: "display: block" %>
+    <%= form.text_area :resolutions %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

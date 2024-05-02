@@ -1,0 +1,71 @@
+<h1>Change#roles</h1>
+<p>Find me in app/views/change/roles.html.erb</p>
+
+
+<table class="table table-stried table-bordered table-hover">
+  <thead class="thead-dark">
+  <tr>
+    <th>Email</th>
+    <th></th>
+    <th>role</th>
+    <th> </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @user.each do |user| %>
+    <tr>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.role.name %>
+
+      </td>
+
+    </tr>
+
+  <% end %>
+
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+
+
+  <%= form_for(resource, as: @user, url: users_update_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%= f.hidden_field :id %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :role %><br />
+      <%= f.text_field :role %>
+    </div>
+
+
+
+    <div class="field">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
+
+  </tbody>
+</table>

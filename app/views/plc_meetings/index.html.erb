@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Plc meetings</h1>
+
+<div id="plc_meetings">
+  <% @plc_meetings.each do |plc_meeting| %>
+    <%= render plc_meeting %>
+    <p>
+      <%= link_to "Show this plc meeting", plc_meeting %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New plc meeting", new_plc_meeting_path %>
