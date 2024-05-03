@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @sign_up %>
+
+<div>
+  <%= link_to "Edit this sign up", edit_sign_up_path(@sign_up) %> |
+  <%= link_to "Back to sign ups", sign_ups_path %>
+
+  <%= button_to "Destroy this sign up", @sign_up, method: :delete %>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Sign ups</h1>
+
+<div id="sign_ups">
+  <% @sign_ups.each do |sign_up| %>
+    <%= render sign_up %>
+    <p>
+      <%= link_to "Show this sign up", sign_up %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New sign up", new_sign_up_path %>

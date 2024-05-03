@@ -3,11 +3,15 @@
 
 Rails.application.routes.draw do
 
+
   resources :plc_meetings do
     resources :agenda_items
     end
   resources :committee_meetings do
     resources :committee_agenda_items
+  end
+  resources :troop_events do
+    resources :sign_ups, except: [:show]
   end
   get 'change/roles'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

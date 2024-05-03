@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_01_202308) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_02_221629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_202308) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sign_ups", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.boolean "paided"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "troop_event_id", null: false
+    t.index ["troop_event_id"], name: "index_sign_ups_on_troop_event_id"
+  end
+
+  create_table "troop_events", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.time "start_time"
+    t.time "end_time"
+    t.text "title"
+    t.text "location"
+    t.float "cost"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,5 +93,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_01_202308) do
 
   add_foreign_key "agenda_items", "plc_meetings"
   add_foreign_key "committee_agenda_items", "committee_meetings"
+  add_foreign_key "sign_ups", "troop_events"
   add_foreign_key "users", "roles"
 end

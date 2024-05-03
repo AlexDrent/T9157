@@ -1,0 +1,57 @@
+<%= form_with(model: troop_event) do |form| %>
+  <% if troop_event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(troop_event.errors.count, "error") %> prohibited this troop_event from being saved:</h2>
+
+      <ul>
+        <% troop_event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, style: "display: block" %>
+    <%= form.time_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, style: "display: block" %>
+    <%= form.time_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_area :location %>
+  </div>
+
+  <div>
+    <%= form.label :cost, style: "display: block" %>
+    <%= form.text_field :cost %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

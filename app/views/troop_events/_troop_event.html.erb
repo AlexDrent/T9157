@@ -1,0 +1,44 @@
+<div id="<%= dom_id troop_event %>">
+  <p>
+    <strong>Start date:</strong>
+    <%= troop_event.start_date %>
+  </p>
+
+  <p>
+    <strong>End date:</strong>
+    <%= troop_event.end_date %>
+  </p>
+
+  <p>
+    <strong>Start time:</strong>
+    <% time = troop_event.start_time %>
+    <%= time.strftime("%I:%M %p") %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <% time = troop_event.end_time %>
+    <%= time.strftime("%I:%M %p") %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= troop_event.title %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= troop_event.location %>
+  </p>
+
+  <p>
+    <strong>Cost:</strong>
+    <%= troop_event.cost %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= troop_event.description %>
+  </p>
+
+</div>

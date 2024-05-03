@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <% if current_user.role_id >= 2 %>
+
+        <h1>Troop events</h1>
+
+        <div id="troop_events">
+          <% @troop_events.each do |troop_event| %>
+            <%= render troop_event %>
+            <p>
+              <%= link_to "Show this troop event", troop_event %>
+            </p>
+          <% end %>
+        </div>
+
+        <%= link_to "New troop event", new_troop_event_path %>
+
+    <% end %>
+<% end %>

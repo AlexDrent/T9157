@@ -1,0 +1,33 @@
+<%= form_with(model: sign_up) do |form| %>
+  <% if sign_up.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sign_up.errors.count, "error") %> prohibited this sign_up from being saved:</h2>
+
+      <ul>
+        <% sign_up.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_area :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_area :last_name %>
+  </div>
+  <%= form.hidden_field :troop_event_id %>
+
+  <div>
+    <%= form.label :paided, style: "display: block" %>
+    <%= form.check_box :paided %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,58 @@
+<% if user_signed_in? %>
+  <% if current_user.role_id >= 2 %>
+
+    <%= render @troop_event %>
+
+    <div>
+      <%= link_to "Edit this troop event", edit_troop_event_path(@troop_event) %> |
+      <%= link_to "Back to troop events", troop_events_path %>
+
+      <%= button_to "Destroy this troop event", @troop_event, method: :delete %>
+
+
+    </div>
+    <h2>Sign up</h2>
+
+
+    <%= form_with(model: [@troop_event, SignUp.new], url: troop_event_sign_ups_path(@troop_event), method: :post) do |form|%>
+      <ul>
+        <li>
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name %>
+        </li>
+        <li>
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name %>
+        </li>
+        <li>
+          <%= form.label :paided %>
+          <%= form.check_box :paided %>
+        </li>
+        <li>
+          <%= form.submit %>
+        </li>
+      </ul>
+    <% end %>
+
+
+    <% if @sign_ups.any? && current_user.role_id >= 6 %>
+      <ul>
+        <% @sign_ups.each do |sign_up| %>
+        <li>
+          <strong>First name:</strong> <%= sign_up.first_name %> <br>
+          <strong>Last name:</strong> <%= sign_up.last_name %>
+          <%= form_with(model: sign_up, url: troop_event_sign_up_path(@troop_event, sign_up), method: :patch) do |form| %>
+            <%= form.hidden_field :troop_event_id, value: @troop_event.id %>
+            <%= form.label :paided %>
+            <%= form.check_box :paided, onchange: "this.form.submit()" %>
+
+          <% end %>
+
+          <%= button_to "Delete", troop_event_sign_up_path(@troop_event, sign_up), method: :delete, data: { confirm: "Are you sure you want to delete this sign-up?" } %>
+            </li>
+
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>
